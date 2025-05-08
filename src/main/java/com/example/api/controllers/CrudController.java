@@ -3,6 +3,8 @@ package com.example.api.controllers;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -36,11 +40,22 @@ public class CrudController {
     
     @DeleteMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable Long id){
-        boolean isRemoved = crudService.delteUser(id);
+        boolean isRemoved = crudService.deleteUser(id);
         if(isRemoved){
             return "Usuario eliminado";
         }else{
             return "Error al eliminar el usuario";
+        }
+    }
+
+    @PutMapping("user/update/{id}")
+    public ResponseEntity<UserModel> updateUser(@PathVariable Long id, @RequestBody UserModel user) {
+
+        UserModel updateUser = crudService.updateUser(id, user);
+        if(updateUser != null){
+            return new ResponseEntity<>(updateUser, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     

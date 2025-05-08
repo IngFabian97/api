@@ -1,7 +1,7 @@
 package com.example.api.services;
 
 import java.util.ArrayList;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +25,26 @@ public class CrudService {
         return userRepository.save(user);
     }
 
-    public boolean delteUser(Long id){
+    public boolean deleteUser(Long id){
         try{
             userRepository.deleteById(id);
             return true;
         }catch(Exception err){
             System.out.println("Error al eliminar el usuario");
             return false;
+        }
+    }
+
+    public UserModel updateUser(Long id, UserModel user){
+        Optional<UserModel> optionalUser = userRepository.findById(id);
+        if(optionalUser.isPresent()) {
+            UserModel existingUser = optionalUser.get();
+            existingUser.setName(user.getName());
+            existingUser.setEmail(user.getEmail());
+            return userRepository.save(existingUser);
+        } else {
+            return null; 
+
         }
     }
 }
