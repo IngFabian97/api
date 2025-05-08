@@ -1,0 +1,60 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Ignorar archivos de configuración de Spring Boot
+src/main/resources/application*.properties
+src/main/resources/application*.yml
+
+# Archivos de logs
+*.log
+logs/
+
+# Archivos de configuración de IDEs adicionales
+*.swp
+*.swo
+*.bak
+
+# Archivos de Maven
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.properties
+
+# Archivos de caché de compilación
+target/
+out/
+
+# Archivos de configuración de Docker
+docker-compose.override.yml
+
+# Archivos de configuración de pruebas
+test-output/
