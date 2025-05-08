@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.api.models.UserModel;
 import com.example.api.services.CrudService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -31,5 +34,14 @@ public class CrudController {
         return crudService.saveUser(user);
     }
     
+    @DeleteMapping("/user/delete/{id}")
+    public String deleteUser(@PathVariable Long id){
+        boolean isRemoved = crudService.delteUser(id);
+        if(isRemoved){
+            return "Usuario eliminado";
+        }else{
+            return "Error al eliminar el usuario";
+        }
+    }
     
 }

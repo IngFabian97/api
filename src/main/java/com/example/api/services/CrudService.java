@@ -24,4 +24,14 @@ public class CrudService {
         System.out.println("Datos guardaddos" + user);
         return userRepository.save(user);
     }
+
+    public boolean delteUser(Long id){
+        try{
+            userRepository.deleteById(id);
+            return true;
+        }catch(Exception err){
+            System.out.println("Error al eliminar el usuario");
+            return false;
+        }
+    }
 }
